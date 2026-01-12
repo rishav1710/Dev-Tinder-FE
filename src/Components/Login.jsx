@@ -1,10 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
+import { addUser } from "../utils/userSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -18,11 +23,13 @@ function Login() {
           withCredentials: true,
         }
       );
-      console.log(res.data.user);
+      dispatch(addUser(res.data.user));
+      return navigate("/");
     } catch (err) {
       console.log(err);
     }
   };
+
   return (
     <div className="flex justify-center my-10 px-10 min-h-[80vh] items-center">
       <div className="card w-96 bg-base-300 shadow-sm">
