@@ -20,12 +20,12 @@ const EditProfile = ({ user }) => {
   const saveProfile = async () => {
     setError("");
     try {
-      const res = await axios.post(
-        BASE_URL + "/profile/edit",
+      const res = await axios.patch(
+        BASE_URL + `/profile/edit/${user._id}`,
         {
           firstName,
           lastName,
-          photoURL,
+          photoUrl: photoURL,
           age,
           gender,
           about,
@@ -161,8 +161,16 @@ const EditProfile = ({ user }) => {
           </div>
         </div>
         <UserCard
-          user={{ firstName, lastName, photoURL, about, age, gender, skills }}
-          profile={false}
+          user={{
+            firstName,
+            lastName,
+            photoUrl: photoURL,
+            about,
+            age,
+            gender,
+            skills,
+          }}
+          profile
         />
       </div>
       {showToast && (

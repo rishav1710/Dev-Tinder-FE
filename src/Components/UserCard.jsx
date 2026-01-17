@@ -5,7 +5,7 @@ import { removeUserFromFeed } from "../utils/feedSlice.js";
 
 const UserCard = ({ user, profile }) => {
   const dispatch = useDispatch();
-  const { _id, firstName, lastName, age, gender, about, photoURL, skills } =
+  const { _id, firstName, lastName, age, gender, about, photoUrl, skills } =
     user;
 
   const handleSendRequest = async (status, userId) => {
@@ -26,7 +26,7 @@ const UserCard = ({ user, profile }) => {
   return (
     <div className="card grid-rows-1 bg-base-300 w-96 shadow-xl p-3">
       <figure>
-        <img src={photoURL} alt="Shoes" />
+        <img src={photoUrl} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{firstName + " " + lastName}</h2>
@@ -47,7 +47,7 @@ const UserCard = ({ user, profile }) => {
             </div>
           </div>
         )}
-        {profile && (
+        {!profile && (
           <div className="card-actions justify-center my-4">
             <button
               className="btn btn-accent"
@@ -60,7 +60,7 @@ const UserCard = ({ user, profile }) => {
             <button
               className="btn btn-secondary"
               onClick={() => {
-                handleSendRequest("intrested", _id);
+                handleSendRequest("interested", _id);
               }}
             >
               Intrested
