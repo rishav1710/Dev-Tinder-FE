@@ -63,7 +63,7 @@ const UserCard = ({ user, profile }) => {
                 handleSendRequest("interested", _id);
               }}
             >
-              Intrested
+              Interested
             </button>
           </div>
         )}
